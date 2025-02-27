@@ -30,3 +30,6 @@
 *.exe
 *.out
 *.app
+.Rproj.user
+Code/.DS_Store
+.DS_Store
