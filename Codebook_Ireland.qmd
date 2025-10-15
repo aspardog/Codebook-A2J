@@ -1,0 +1,1021 @@
+---
+title: "Codebook Legal Needs Survey"
+author: "Data Analytics Unit <br>and <br>Access to Justice Team"
+format:
+   revealjs: 
+    embed-resources: true
+    toc-depth: 1
+editor: visual
+---
+
+# Objective
+
+This codebook aims to provide a standardized method for coding all the concepts developed by the World Justice Project’s Access to Justice team from the Legal Needs Survey. These concepts are designed to assess people's experiences within a country when resolving a justiciable problem.
+
+# Legal Needs Survey
+
+## What is a legal needs survey?
+
+A legal needs survey is a large-scale empirical survey that examines the public’s experience with justiciable problems—civil legal issues that individuals may or may not recognize as legal and that can be addressed through formal or informal channels.
+
+-   These surveys explore how people encounter and resolve legal problems, focusing on access to justice, sources of advice and representation, dispute resolution processes, the trajectory of the resolution process, and the broader social and economic hardships associated with legal issues.
+
+# Codebook
+
+# People’s Legal Needs
+
+## Problem Prevalence
+
+To measure the prevalence of legal problems—defined as the percentage of people who experienced at least one legal problem in Ireland—this indicator draws on data from the Ireland Legal Needs Survey. In this context, a “legal problem” refers to any issue identified in the questionnaire under the following categories:
+
+## Measurement Framework {.smaller}
+
+<br> **Universe**: All people. <br> <br>
+
+<div style="font-size: 80%; width: 100%;">
+
+
+<table style="width:100%; border-collapse:collapse; border:1px solid #ddd; table-layout:fixed; font-size:0.9em;">
+<colgroup>
+<col style="width: 20%;">
+<col style="width: 55%;">
+<col style="width: 10%;">
+<col style="width: 15%;">
+</colgroup>
+<thead style="background-color:#f2f2f2;">
+<tr>
+<th style="border:1px solid #ddd; padding:6px;">
+Indicator
+</th>
+<th style="border:1px solid #ddd; padding:6px;">
+Legal Needs Survey Question
+</th>
+<th style="border:1px solid #ddd; padding:6px;">
+Response Category
+</th>
+<th style="border:1px solid #ddd; padding:6px;">
+Coding<br>(1 = problem experienced,<br>0 = no problem)
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td rowspan="2" style="border:1px solid #ddd; padding:6px; vertical-align:top;">
+<b>Problem prevalence</b>
+</td>
+<td rowspan="2" style="border:1px solid #ddd; padding:6px; vertical-align:top;">
+Thinking back over the last two years (i.e.&nbsp;since September 2023), which of the following issues, if any, have you personally experienced?
+</td>
+<td style="border:1px solid #ddd; padding:6px;">
+Yes
+</td>
+<td style="border:1px solid #ddd; padding:6px; text-align:center;">
+<b>1</b>
+</td>
+</tr>
+<tr>
+<td style="border:1px solid #ddd; padding:6px;">
+No
+</td>
+<td style="border:1px solid #ddd; padding:6px; text-align:center;">
+<b>0</b>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+# People’s Journeys to Justice
+
+## Access to Appropriate Information and Advice
+
+For the purposes of this study, an individual is considered to have access to information and advice if they reported knowing where to obtain reliable information and guidance to help resolve their legal problem.
+
+## Measurement Framework {.smaller}
+
+<br> **Universe**: People who experienced a legal problem in the previous two years. <br> <br>
+
+<div style="font-size: 80%; width: 100%;">
+<table style="width:100%; border-collapse:collapse; border:1px solid #ddd; table-layout:fixed; font-size:0.9em;">
+<colgroup>
+<col style="width: 22%;">
+<col style="width: 50%;">
+<col style="width: 16%;">
+<col style="width: 12%;">
+</colgroup>
+<thead style="background-color:#f2f2f2;">
+<tr>
+<th style="border:1px solid #ddd; padding:6px;">
+Indicator
+</th>
+<th style="border:1px solid #ddd; padding:6px;">
+Legal Needs Survey Question
+</th>
+<th style="border:1px solid #ddd; padding:6px;">
+Response Category
+</th>
+<th style="border:1px solid #ddd; padding:6px;">
+Coding<br>(1 = has access,<br>0 = no access)
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td rowspan="2" style="border:1px solid #ddd; padding:6px; vertical-align:top;">
+<b>Access to Information and Advice</b>
+</td>
+<td rowspan="2" style="border:1px solid #ddd; padding:6px; vertical-align:top;">
+I knew where to get good information and advice about resolving issues.
+</td>
+<td style="border:1px solid #ddd; padding:6px;">
+Strongly agree / Agree
+</td>
+<td style="border:1px solid #ddd; padding:6px; text-align:center;">
+<b>1</b>
+</td>
+</tr>
+<tr>
+<td style="border:1px solid #ddd; padding:6px;">
+Strongly disagree / Disagree
+</td>
+<td style="border:1px solid #ddd; padding:6px; text-align:center;">
+<b>0</b>
+</td>
+</tr>
+</tbody>
+
+</table>
+</div>
+
+## Access to Adequate Assistance and Representation
+
+Access to Assistance and Representation refers to the extent to which individuals facing a legal problem are able to obtain appropriate advice or representation from qualified sources—such as lawyers, professional advisers, or legal aid services—or do not require such assistance to resolve their issue.
+
+## Measurement Framework {.smaller}
+
+**Universe**: People who experienced a legal problem in the previous two years. <br> <br>
+
+<div style="font-size: 0.525em; width: 100%; overflow-x: auto;">
+
+
+<table style="width:100%; border-collapse:collapse; border:1px solid #ddd; table-layout:fixed; font-size:0.85em;">
+<colgroup>
+<col style="width: 18%;">
+<col style="width: 30%;">
+<col style="width: 42%;">
+<col style="width: 10%;">
+</colgroup>
+<thead style="background-color:#f2f2f2;">
+<tr>
+<th style="border:1px solid #ddd; padding:6px;">
+Indicator
+</th>
+<th style="border:1px solid #ddd; padding:6px;">
+Legal Needs Survey Question
+</th>
+<th style="border:1px solid #ddd; padding:6px;">
+Response Category
+</th>
+<th style="border:1px solid #ddd; padding:6px;">
+Coding<br>(1 = appropriate,<br>0 = inappropriate)
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td rowspan="17" style="border:1px solid #ddd; padding:6px; vertical-align:top;">
+<b>Access to Assistance and Representation</b>
+</td>
+<td rowspan="17" style="border:1px solid #ddd; padding:6px; vertical-align:top;">
+Did you, or someone acting on your behalf, obtain information, advice or assistance from any of the following, to help you better understand the issue?
+</td>
+<td style="border:1px solid #ddd; padding:6px;">
+<ol type="a">
+<li>Court (District Court, High Court, etc.)
+</li></ol></td>
+<td style="border:1px solid #ddd; padding:6px; text-align:center;">
+<b>1</b>
+</td>
+</tr>
+<tr>
+<td style="border:1px solid #ddd; padding:6px;">
+<ol start="2" type="a">
+<li>Tribunal (Workplace Relations Commission)
+</li></ol></td>
+<td style="border:1px solid #ddd; padding:6px; text-align:center;">
+<b>1</b>
+</td>
+</tr>
+<tr>
+<td style="border:1px solid #ddd; padding:6px;">
+<ol start="3" type="a">
+<li>Ombudsman (Financial Services Ombudsman)
+</li></ol></td>
+<td style="border:1px solid #ddd; padding:6px; text-align:center;">
+<b>1</b>
+</td>
+</tr>
+<tr>
+<td style="border:1px solid #ddd; padding:6px;">
+<ol start="4" type="a">
+<li>Police / law enforcement
+</li></ol></td>
+<td style="border:1px solid #ddd; padding:6px; text-align:center;">
+<b>1</b>
+</td>
+</tr>
+<tr>
+<td style="border:1px solid #ddd; padding:6px;">
+<ol start="5" type="a">
+<li>Family Mediation Service
+</li></ol></td>
+<td style="border:1px solid #ddd; padding:6px; text-align:center;">
+<b>1</b>
+</td>
+</tr>
+<tr>
+<td style="border:1px solid #ddd; padding:6px;">
+<ol start="6" type="a">
+<li>Mediation or conciliation service (including online/commercial)
+</li></ol></td>
+<td style="border:1px solid #ddd; padding:6px; text-align:center;">
+<b>1</b>
+</td>
+</tr>
+<tr>
+<td style="border:1px solid #ddd; padding:6px;">
+<ol start="7" type="a">
+<li>Private solicitor / solicitor’s office
+</li></ol></td>
+<td style="border:1px solid #ddd; padding:6px; text-align:center;">
+<b>1</b>
+</td>
+</tr>
+<tr>
+<td style="border:1px solid #ddd; padding:6px;">
+<ol start="8" type="a">
+<li>Private barrister / barrister’s office
+</li></ol></td>
+<td style="border:1px solid #ddd; padding:6px; text-align:center;">
+<b>1</b>
+</td>
+</tr>
+<tr>
+<td style="border:1px solid #ddd; padding:6px;">
+<ol type="i">
+<li>Legal Aid Board Law Centre
+</li></ol></td>
+<td style="border:1px solid #ddd; padding:6px; text-align:center;">
+<b>1</b>
+</td>
+</tr>
+<tr>
+<td style="border:1px solid #ddd; padding:6px;">
+<ol start="10" type="a">
+<li>Other law centre (FLAC, etc.)
+</li></ol></td>
+<td style="border:1px solid #ddd; padding:6px; text-align:center;">
+<b>1</b>
+</td>
+</tr>
+<tr>
+<td style="border:1px solid #ddd; padding:6px;">
+<ol start="11" type="a">
+<li>Government department, local council, or agency
+</li></ol></td>
+<td style="border:1px solid #ddd; padding:6px; text-align:center;">
+<b>1</b>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+## Measurement Framework {.smaller}
+
+**Universe**: People who experienced a legal problem in the previous two years. <br> <br>
+
+<div style="font-size: 0.525em; width: 100%; overflow-x: auto;">
+<table style="width:100%; border-collapse:collapse; border:1px solid #ddd; table-layout:fixed; font-size:0.85em;">
+<colgroup>
+<col style="width: 18%;">
+<col style="width: 30%;">
+<col style="width: 42%;">
+<col style="width: 10%;">
+</colgroup>
+<thead style="background-color:#f2f2f2;">
+<tr>
+<th style="border:1px solid #ddd; padding:6px;">
+Indicator
+</th>
+<th style="border:1px solid #ddd; padding:6px;">
+Legal Needs Survey Question
+</th>
+<th style="border:1px solid #ddd; padding:6px;">
+Response Category
+</th>
+<th style="border:1px solid #ddd; padding:6px;">
+Coding<br>(1 = appropriate,<br>0 = inappropriate)
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td rowspan="17" style="border:1px solid #ddd; padding:6px; vertical-align:top;">
+<b>Access to Assistance and Representation</b>
+</td>
+<td rowspan="17" style="border:1px solid #ddd; padding:6px; vertical-align:top;">
+Did you, or someone acting on your behalf, obtain information, advice or assistance from any of the following, to help you better understand the issue?
+</td>
+</tr><tr>
+<td style="border:1px solid #ddd; padding:6px;">
+<ol start="12" type="a">
+<li>Non-legal professional / helpline
+</li></ol></td>
+<td style="border:1px solid #ddd; padding:6px; text-align:center;">
+<b>0</b>
+</td>
+</tr>
+<tr>
+<td style="border:1px solid #ddd; padding:6px;">
+<ol start="13" type="a">
+<li>Person of standing in the community (politician, teacher, etc.)
+</li></ol></td>
+<td style="border:1px solid #ddd; padding:6px; text-align:center;">
+<b>0</b>
+</td>
+</tr>
+<tr>
+<td style="border:1px solid #ddd; padding:6px;">
+<ol start="14" type="a">
+<li>Online search (Google, etc.)
+</li></ol></td>
+<td style="border:1px solid #ddd; padding:6px; text-align:center;">
+<b>0</b>
+</td>
+</tr>
+<tr>
+<td style="border:1px solid #ddd; padding:6px;">
+<ol start="15" type="a">
+<li>Social media (Facebook, TikTok, X, etc.)
+</li></ol></td>
+<td style="border:1px solid #ddd; padding:6px; text-align:center;">
+<b>0</b>
+</td>
+</tr>
+<tr>
+<td style="border:1px solid #ddd; padding:6px;">
+<ol start="16" type="a">
+<li>AI tools (ChatGPT, Gemini, etc.)
+</li></ol></td>
+<td style="border:1px solid #ddd; padding:6px; text-align:center;">
+<b>0</b>
+</td>
+</tr>
+<tr>
+<td style="border:1px solid #ddd; padding:6px;">
+<ol start="17" type="a">
+<li>Friend, family member, or acquaintance
+</li></ol></td>
+<td style="border:1px solid #ddd; padding:6px; text-align:center;">
+<b>0</b>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+## Measurement Framework {.smaller}
+
+**Universe**: People who experienced a legal problem in the previous two years. <br> <br>
+
+<div style="font-size: 0.525em; width: 100%; overflow-x: auto;">
+
+
+<table style="width:100%; border-collapse:collapse; border:1px solid #ddd; table-layout:fixed; font-size:0.85em;">
+<colgroup>
+<col style="width: 18%;">
+<col style="width: 30%;">
+<col style="width: 42%;">
+<col style="width: 10%;">
+</colgroup>
+<thead style="background-color:#f2f2f2;">
+<tr>
+<th style="border:1px solid #ddd; padding:6px;">
+Indicator
+</th>
+<th style="border:1px solid #ddd; padding:6px;">
+Legal Needs Survey Question
+</th>
+<th style="border:1px solid #ddd; padding:6px;">
+Response Category
+</th>
+<th style="border:1px solid #ddd; padding:6px;">
+Coding<br>(1 = appropriate,<br>0 = inappropriate)
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td rowspan="18" style="border:1px solid #ddd; padding:6px; vertical-align:top;">
+<b>Access to Assistance and Representation</b>
+</td>
+<td rowspan="18" style="border:1px solid #ddd; padding:6px; vertical-align:top;">
+What was the reason you didn’t obtain assistance from an organisation or professional to help you better understand the issue? Please select all that apply.
+</td>
+<td style="border:1px solid #ddd; padding:6px;">
+<ol type="a">
+<li>There was no real disagreement or problem
+</li></ol></td>
+<td style="border:1px solid #ddd; padding:6px; text-align:center;">
+<b>1</b>
+</td>
+</tr>
+<tr>
+<td style="border:1px solid #ddd; padding:6px;">
+<ol start="2" type="a">
+<li>I felt the other person or organisation was in the right
+</li></ol></td>
+<td style="border:1px solid #ddd; padding:6px; text-align:center;">
+<b>1</b>
+</td>
+</tr>
+<tr>
+<td style="border:1px solid #ddd; padding:6px;">
+<ol start="3" type="a">
+<li>The issue resolved itself without needing help
+</li></ol></td>
+<td style="border:1px solid #ddd; padding:6px; text-align:center;">
+<b>1</b>
+</td>
+</tr>
+<tr>
+<td style="border:1px solid #ddd; padding:6px;">
+<ol start="4" type="a">
+<li>I got all the help I needed from other organisations/people
+</li></ol></td>
+<td style="border:1px solid #ddd; padding:6px; text-align:center;">
+<b>1</b>
+</td>
+</tr>
+<tr>
+<td style="border:1px solid #ddd; padding:6px;">
+<ol start="5" type="a">
+<li>I didn’t feel I needed help
+</li></ol></td>
+<td style="border:1px solid #ddd; padding:6px; text-align:center;">
+<b>1</b>
+</td>
+</tr>
+<tr>
+<td style="border:1px solid #ddd; padding:6px;">
+<ol start="6" type="a">
+<li>I didn’t think the issue was serious enough
+</li></ol></td>
+<td style="border:1px solid #ddd; padding:6px; text-align:center;">
+<b>1</b>
+</td>
+</tr>
+<tr>
+<td style="border:1px solid #ddd; padding:6px;">
+<ol start="11" type="a">
+<li>I was afraid it would damage my relationship with the other person or organisation
+</li></ol></td>
+<td style="border:1px solid #ddd; padding:6px; text-align:center;">
+<b>1</b>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+## Measurement Framework {.smaller}
+
+**Universe**: People who experienced a legal problem in the previous two years. <br> <br>
+
+<div style="font-size: 0.525em; width: 100%; overflow-x: auto;">
+
+
+<table style="width:100%; border-collapse:collapse; border:1px solid #ddd; table-layout:fixed; font-size:0.85em;">
+<colgroup>
+<col style="width: 18%;">
+<col style="width: 30%;">
+<col style="width: 42%;">
+<col style="width: 10%;">
+</colgroup>
+<thead style="background-color:#f2f2f2;">
+<tr>
+<th style="border:1px solid #ddd; padding:6px;">
+Indicator
+</th>
+<th style="border:1px solid #ddd; padding:6px;">
+Legal Needs Survey Question
+</th>
+<th style="border:1px solid #ddd; padding:6px;">
+Response Category
+</th>
+<th style="border:1px solid #ddd; padding:6px;">
+Coding<br>(1 = appropriate,<br>0 = inappropriate)
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td rowspan="18" style="border:1px solid #ddd; padding:6px; vertical-align:top;">
+<b>Access to Assistance and Representation</b>
+</td>
+<td rowspan="18" style="border:1px solid #ddd; padding:6px; vertical-align:top;">
+What was the reason you didn’t obtain assistance from an organisation or professional to help you better understand the issue? Please select all that apply.
+</td>
+</tr>
+<tr>
+<td style="border:1px solid #ddd; padding:6px;">
+<ol start="7" type="a">
+<li>I was concerned about how much time it would take
+</li></ol></td>
+<td style="border:1px solid #ddd; padding:6px; text-align:center;">
+<b>0</b>
+</td>
+</tr>
+<tr>
+<td style="border:1px solid #ddd; padding:6px;">
+<ol start="8" type="a">
+<li>I was concerned about how much it would cost
+</li></ol></td>
+<td style="border:1px solid #ddd; padding:6px; text-align:center;">
+<b>0</b>
+</td>
+</tr>
+<tr>
+<td style="border:1px solid #ddd; padding:6px;">
+<ol type="i">
+<li>It was difficult to find someone nearby who could help me
+</li></ol></td>
+<td style="border:1px solid #ddd; padding:6px; text-align:center;">
+<b>0</b>
+</td>
+</tr>
+<tr>
+<td style="border:1px solid #ddd; padding:6px;">
+<ol start="10" type="a">
+<li>I thought it would be too stressful
+</li></ol></td>
+<td style="border:1px solid #ddd; padding:6px; text-align:center;">
+<b>0</b>
+</td>
+</tr>
+<tr>
+<td style="border:1px solid #ddd; padding:6px;">
+<ol start="12" type="a">
+<li>I was scared to take action or ask for help
+</li></ol></td>
+<td style="border:1px solid #ddd; padding:6px; text-align:center;">
+<b>0</b>
+</td>
+</tr>
+<tr>
+<td style="border:1px solid #ddd; padding:6px;">
+<ol start="13" type="a">
+<li>I didn’t know where or how to find information or advice
+</li></ol></td>
+<td style="border:1px solid #ddd; padding:6px; text-align:center;">
+<b>0</b>
+</td>
+</tr>
+<tr>
+<td style="border:1px solid #ddd; padding:6px;">
+<ol start="14" type="a">
+<li>I didn’t think it would change the outcome
+</li></ol></td>
+<td style="border:1px solid #ddd; padding:6px; text-align:center;">
+<b>0</b>
+</td>
+</tr>
+<tr>
+<td style="border:1px solid #ddd; padding:6px;">
+<ol start="15" type="a">
+<li>I had tried seeking help before and it wasn’t helpful
+</li></ol></td>
+<td style="border:1px solid #ddd; padding:6px; text-align:center;">
+<b>0</b>
+</td>
+</tr>
+<tr>
+<td style="border:1px solid #ddd; padding:6px;">
+<ol start="16" type="a">
+<li>Someone told me not to get advice or information
+</li></ol></td>
+<td style="border:1px solid #ddd; padding:6px; text-align:center;">
+<b>0</b>
+</td>
+</tr>
+<tr>
+<td style="border:1px solid #ddd; padding:6px;">
+<ol start="17" type="a">
+<li>Other reason (specify)
+</li></ol></td>
+<td style="border:1px solid #ddd; padding:6px; text-align:center;">
+<b>0</b>
+</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+
+## Access to Dispute Resolution Mechanisms (When Needed) {.smaller}
+
+This indicator measures the proportion of individuals who needed access to a third-party dispute resolution mechanism and were able to obtain it to address a justice problem. It reflects people’s effective access to formal and informal institutions that can adjudicate, mediate, or otherwise intervene to help resolve disputes — a core dimension of access to justice and of Sustainable Development Goal (SDG) Indicator 16.3.3.
+
+Dispute Resolution Mechanisms (DRMs) include a broad range of entities such as courts and tribunals, government offices or agencies, ombudsmen, mediators, arbitration and conciliation bodies, complaint or appeal offices, police, and community or religious authorities.
+
+## Measurement Framework {.smaller}
+
+**Universe**: People who experienced a legal problem in the previous two years. <br> <br>
+
+<div style="font-size: 0.5em; width: 100%; overflow-x: auto;">
+
+<table style="width:100%; border-collapse:collapse; border:1px solid #ddd; table-layout:fixed; font-size:0.9em;">
+  <colgroup>
+    <col style="width: 16%;"> 
+    <col style="width: 22%;"> 
+    <col style="width: 50%;"> 
+    <col style="width: 12%;"> 
+  </colgroup>
+  <thead style="background-color:#f2f2f2;">
+    <tr>
+      <th style="border:1px solid #ddd; padding:6px;">Indicator</th>
+      <th style="border:1px solid #ddd; padding:6px;">Legal Needs Survey Question</th>
+      <th style="border:1px solid #ddd; padding:6px;">Response Category</th>
+      <th style="border:1px solid #ddd; padding:6px;">Coding<br>(1 = DRM contacted,<br>0 = non-DRM contact)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td rowspan="11" style="border:1px solid #ddd; padding:6px; vertical-align:top;"><b>Access to Dispute Resolution Mechanisms (DRM)</b></td>
+      <td rowspan="11" style="border:1px solid #ddd; padding:6px; vertical-align:top;">
+        Q26 — Did you, or somebody acting on your behalf, turn to any of the following to bring about a resolution for this issue?<br><br>
+      </td>
+      <td style="border:1px solid #ddd; padding:6px;">a) Court (small claims, District, High, Court of Appeal, Supreme Court, European Court, etc.)</td>
+      <td style="border:1px solid #ddd; padding:6px; text-align:center;"><b>1</b></td>
+    </tr>
+    <tr><td style="border:1px solid #ddd; padding:6px;">b) Tribunal (e.g., IPAT, Workplace Relations Commission, Social Welfare Appeals Office, Residential Tenancies Board, Mental Health Tribunal, Fair Employment Tribunal)</td><td style="border:1px solid #ddd; padding:6px; text-align:center;"><b>1</b></td></tr>
+    <tr><td style="border:1px solid #ddd; padding:6px;">c) Ombudsman (e.g., Financial Services Ombudsman)</td><td style="border:1px solid #ddd; padding:6px; text-align:center;"><b>1</b></td></tr>
+    <tr><td style="border:1px solid #ddd; padding:6px;">d) Police / law enforcement (e.g., Gardaí)</td><td style="border:1px solid #ddd; padding:6px; text-align:center;"><b>1</b></td></tr>
+    <tr><td style="border:1px solid #ddd; padding:6px;">e) Formal mediation, conciliation, or other complaint/dispute resolution service (including Family Mediation Service)</td><td style="border:1px solid #ddd; padding:6px; text-align:center;"><b>1</b></td></tr>
+    <tr><td style="border:1px solid #ddd; padding:6px;">f) Lawyer, or person working in a lawyer’s office</td><td style="border:1px solid #ddd; padding:6px; text-align:center;"><b>1</b></td></tr>
+    <tr><td style="border:1px solid #ddd; padding:6px;">g) Government department, local council, or agency (e.g., Housing or Social Welfare officer)</td><td style="border:1px solid #ddd; padding:6px; text-align:center;"><b>1</b></td></tr>
+    <tr><td style="border:1px solid #ddd; padding:6px;">h) Community leader or person of standing (e.g., politician, teacher, councillor, TD, senator, or priest)</td><td style="border:1px solid #ddd; padding:6px; text-align:center;"><b>1</b></td></tr>
+    <tr><td style="border:1px solid #ddd; padding:6px;">i) Other dispute resolution service (including online or commercial services)</td><td style="border:1px solid #ddd; padding:6px; text-align:center;"><b>1</b></td></tr>
+    <tr><td style="border:1px solid #ddd; padding:6px;">k) Other professional or organisation</td><td style="border:1px solid #ddd; padding:6px; text-align:center;"><b>1</b></td></tr>
+  </tbody>
+</table>
+
+</div>
+
+## Measurement Framework {.smaller}
+
+**Universe**: People who experienced a legal problem in the previous two years. <br> <br>
+
+<div style="font-size: 0.5em; width: 100%; overflow-x: auto;">
+
+<table style="width:100%; border-collapse:collapse; border:1px solid #ddd; table-layout:fixed; font-size:0.9em;">
+  <colgroup>
+    <col style="width: 16%;"> 
+    <col style="width: 22%;"> 
+    <col style="width: 50%;"> 
+    <col style="width: 12%;"> 
+  </colgroup>
+  <thead style="background-color:#f2f2f2;">
+    <tr>
+      <th style="border:1px solid #ddd; padding:6px;">Indicator</th>
+      <th style="border:1px solid #ddd; padding:6px;">Legal Needs Survey Question</th>
+      <th style="border:1px solid #ddd; padding:6px;">Response Category</th>
+      <th style="border:1px solid #ddd; padding:6px;">Coding<br>(1 = DRM contacted,<br>0 = non-DRM contact)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td rowspan="11" style="border:1px solid #ddd; padding:6px; vertical-align:top;"><b>Access to Dispute Resolution Mechanisms (DRM)</b></td>
+      <td rowspan="11" style="border:1px solid #ddd; padding:6px; vertical-align:top;">
+        Q26 — Did you, or somebody acting on your behalf, turn to any of the following to bring about a resolution for this issue?<br><br>
+      </td>
+     <tr><td style="border:1px solid #ddd; padding:6px;">j) Other person (e.g., friend, family member, or acquaintance not in a professional capacity)</td><td style="border:1px solid #ddd; padding:6px; text-align:center;"><b>0</b></td></tr>
+  </tbody>
+</table>
+
+</div>
+## Measurement Framework {.smaller}
+
+**Universe**: People who experienced a legal problem in the previous two years. <br> <br>
+
+<div style="font-size: 0.5em; width: 100%; overflow-x: auto;">
+
+<table style="width:100%; border-collapse:collapse; border:1px solid #ddd; table-layout:fixed; font-size:0.9em;">
+  <colgroup>
+    <col style="width: 16%;"> 
+    <col style="width: 22%;"> 
+    <col style="width: 50%;"> 
+    <col style="width: 12%;"> 
+  </colgroup>
+  <thead style="background-color:#f2f2f2;">
+    <tr>
+      <th style="border:1px solid #ddd; padding:6px;">Indicator</th>
+      <th style="border:1px solid #ddd; padding:6px;">Legal Needs Survey Question</th>
+      <th style="border:1px solid #ddd; padding:6px;">Response Category</th>
+      <th style="border:1px solid #ddd; padding:6px;">Coding<br>(0 = non-DRM contact,<br>NA = non-applicable)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td rowspan="18" style="border:1px solid #ddd; padding:6px; vertical-align:top;"><b>Barriers to Accessing a Dispute Resolution Mechanism (DRM)</b></td>
+      <td rowspan="18" style="border:1px solid #ddd; padding:6px; vertical-align:top;">
+        Q27 — What was the reason you did not turn to a professional or organisation to resolve the issue?<br><br>
+        (Asked if respondent answered “No” to all DRM options at Q26, except for option j — “Other person”).<br><br>
+        <i>Select all that apply.</i>
+      </td>
+      <td style="border:1px solid #ddd; padding:6px;">e) Up to the other party to take this action</td>
+      <td style="border:1px solid #ddd; padding:6px; text-align:center;"><b>0</b></td>
+    </tr>
+    <tr><td style="border:1px solid #ddd; padding:6px;">f) I caused the issue</td><td style="border:1px solid #ddd; padding:6px; text-align:center;"><b>0</b></td></tr>
+    <tr><td style="border:1px solid #ddd; padding:6px;">g) I did not know where to go</td><td style="border:1px solid #ddd; padding:6px; text-align:center;"><b>0</b></td></tr>
+    <tr><td style="border:1px solid #ddd; padding:6px;">h) I could not obtain legal assistance</td><td style="border:1px solid #ddd; padding:6px; text-align:center;"><b>0</b></td></tr>
+    <tr><td style="border:1px solid #ddd; padding:6px;">i) It was too expensive / I was fearful of what it could cost</td><td style="border:1px solid #ddd; padding:6px; text-align:center;"><b>0</b></td></tr>
+    <tr><td style="border:1px solid #ddd; padding:6px;">j) It was too far away or hard to reach</td><td style="border:1px solid #ddd; padding:6px; text-align:center;"><b>0</b></td></tr>
+    <tr><td style="border:1px solid #ddd; padding:6px;">k) It was too inconvenient</td><td style="border:1px solid #ddd; padding:6px; text-align:center;"><b>0</b></td></tr>
+    <tr><td style="border:1px solid #ddd; padding:6px;">l) I did not trust the authorities</td><td style="border:1px solid #ddd; padding:6px; text-align:center;"><b>0</b></td></tr>
+    <tr><td style="border:1px solid #ddd; padding:6px;">m) I did not think they could help</td><td style="border:1px solid #ddd; padding:6px; text-align:center;"><b>0</b></td></tr>
+    <tr><td style="border:1px solid #ddd; padding:6px;">n) I was afraid of the consequences for me/my family</td><td style="border:1px solid #ddd; padding:6px; text-align:center;"><b>0</b></td></tr>
+    <tr><td style="border:1px solid #ddd; padding:6px;">o) I did not know it was possible to turn somewhere to resolve the issue</td><td style="border:1px solid #ddd; padding:6px; text-align:center;"><b>0</b></td></tr>
+    </tbody>
+</table>
+
+</div>
+
+
+## Measurement Framework {.smaller}
+
+**Universe**: People who experienced a legal problem in the previous two years. <br> <br>
+
+<div style="font-size: 0.525em; width: 100%; overflow-x: auto;">
+
+<table style="width:100%; border-collapse:collapse; border:1px solid #ddd; table-layout:fixed; font-size:0.9em;">
+  <colgroup>
+    <col style="width: 16%;"> 
+    <col style="width: 22%;"> 
+    <col style="width: 50%;"> 
+    <col style="width: 12%;"> 
+  </colgroup>
+  <thead style="background-color:#f2f2f2;">
+    <tr>
+      <th style="border:1px solid #ddd; padding:6px;">Indicator</th>
+      <th style="border:1px solid #ddd; padding:6px;">Legal Needs Survey Question</th>
+      <th style="border:1px solid #ddd; padding:6px;">Response Category</th>
+      <th style="border:1px solid #ddd; padding:6px;">Coding<br>(0 = non-DRM contact,<br>NA = non-applicable)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td rowspan="18" style="border:1px solid #ddd; padding:6px; vertical-align:top;"><b>Barriers to Accessing a Dispute Resolution Mechanism (DRM)</b></td>
+      <td rowspan="18" style="border:1px solid #ddd; padding:6px; vertical-align:top;">
+        Q27 — What was the reason you did not turn to a professional or organisation to resolve the issue?<br><br>
+        (Asked if respondent answered “No” to all DRM options at Q26, except for option j — “Other person”).<br><br>
+        <i>Select all that apply.</i>
+      </td>
+      <tr><td style="border:1px solid #ddd; padding:6px;">a) The issue is/was not important enough</td><td style="border:1px solid #ddd; padding:6px; text-align:center;">NA</td></tr>
+    <tr><td style="border:1px solid #ddd; padding:6px;">b) The issue resolved so I didn’t need to</td><td style="border:1px solid #ddd; padding:6px; text-align:center;">NA</td></tr>
+    <tr><td style="border:1px solid #ddd; padding:6px;">c) I was/am confident that I could/can easily resolve it by myself</td><td style="border:1px solid #ddd; padding:6px; text-align:center;">NA</td></tr>
+    <tr><td style="border:1px solid #ddd; padding:6px;">d) I was/am confident that I could/can easily resolve it with the help I got/am getting</td><td style="border:1px solid #ddd; padding:6px; text-align:center;">NA</td></tr>
+    <tr><td style="border:1px solid #ddd; padding:6px;">r) Prefer not to say</td><td style="border:1px solid #ddd; padding:6px; text-align:center;">NA</td></tr>
+        <tr><td style="border:1px solid #ddd; padding:6px;">p) Other reason</td><td style="border:1px solid #ddd; padding:6px; text-align:center;">NA</td></tr>
+    <tr><td style="border:1px solid #ddd; padding:6px;">q) Don’t know</td><td style="border:1px solid #ddd; padding:6px; text-align:center;">NA</td></tr> 
+      </tbody>
+</table>
+</div>
+
+## Fairness of the Resolution Process
+
+This indicator measures the extent to which individuals who have completed the resolution of a legal problem perceive that the process leading to the outcome was fair to all parties involved, regardless of the result itself. It captures people’s subjective assessment of procedural fairness—including impartial treatment, equal opportunity to present their case, and respect throughout the process.
+
+## Measurement Framework {.smaller}
+
+<br> **Universe**: People who experienced a legal problem in the previous two years and whose problem resolution had concluded. <br> <br>
+
+<div style="font-size: 80%; width: 100%;">
+
+
+<table style="width:100%; border-collapse:collapse; border:1px solid #ddd; table-layout:fixed; font-size:0.9em;">
+<colgroup>
+<col style="width: 22%;">
+<col style="width: 50%;">
+<col style="width: 16%;">
+<col style="width: 12%;">
+</colgroup>
+<thead style="background-color:#f2f2f2;">
+<tr>
+<th style="border:1px solid #ddd; padding:6px;">
+Indicator
+</th>
+<th style="border:1px solid #ddd; padding:6px;">
+Legal Needs Survey Question
+</th>
+<th style="border:1px solid #ddd; padding:6px;">
+Response Category
+</th>
+<th style="border:1px solid #ddd; padding:6px;">
+Coding<br>(1 = fair process,<br>0 = unfair process)
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td rowspan="2" style="border:1px solid #ddd; padding:6px; vertical-align:top;">
+<b>Fairness of the Process</b>
+</td>
+<td rowspan="2" style="border:1px solid #ddd; padding:6px; vertical-align:top;">
+Regardless of the outcome of this issue, do you feel the process through which the outcome was reached was overall fair or unfair to everybody concerned?
+</td>
+<td style="border:1px solid #ddd; padding:6px;">
+Fair to everybody concerned
+</td>
+<td style="border:1px solid #ddd; padding:6px; text-align:center;">
+<b>1</b>
+</td>
+</tr>
+<tr>
+<td style="border:1px solid #ddd; padding:6px;">
+Not fair to everybody concerned
+</td>
+<td style="border:1px solid #ddd; padding:6px; text-align:center;">
+<b>0</b>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+## Timeliness of the Resolution Process {.smaller}
+
+This indicator measures whether a respondent’s legal problem was resolved within one year from the time it began. It captures people’s experience with the speed and efficiency of dispute resolution processes, reflecting a core dimension of people-centered justice.
+
+The indicator is derived from the reported start and end (or abandonment) dates of the justice problem, based on the following questions:
+
+Q24.2 – “Roughly what month and year did the issue start or happen?” (Includes “Don’t know” as a valid response option.)
+
+Q24.3 – “And roughly what month and year was the issue done with, in that it was resolved or all had given up trying to resolve it further?” (Includes “Don’t know” as a valid response option; responses cannot precede September 2023.)
+
+The duration between the start and end dates is calculated in months.
+
+1 (Timely) = The problem was resolved or abandoned in less than one year.
+
+0 (Not timely) = The process lasted one year or longer, or the respondent answered “Don’t know.”
+
+## Measurement Framework {.smaller}
+
+<br> **Universe**: People who experienced a legal problem in the previous two years and whose problem resolution had concluded. <br> <br>
+
+<div style="font-size: 80%; width: 100%;">
+
+
+<table style="width:100%; border-collapse:collapse; border:1px solid #ddd; table-layout:fixed; font-size:0.9em;">
+<colgroup>
+<col style="width: 22%;">
+<col style="width: 50%;">
+<col style="width: 16%;">
+<col style="width: 12%;">
+</colgroup>
+<thead style="background-color:#f2f2f2;">
+<tr>
+<th style="border:1px solid #ddd; padding:6px;">
+Indicator
+</th>
+<th style="border:1px solid #ddd; padding:6px;">
+Legal Needs Survey Question
+</th>
+<th style="border:1px solid #ddd; padding:6px;">
+Response Category
+</th>
+<th style="border:1px solid #ddd; padding:6px;">
+Coding<br>(1 = timely,<br>0 = not timely)
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td rowspan="4" style="border:1px solid #ddd; padding:6px; vertical-align:top;">
+<b>Timeliness of the Process</b>
+</td>
+<td rowspan="4" style="border:1px solid #ddd; padding:6px; vertical-align:top;">
+Q24.2 — Roughly what month and year did the issue start or happen?<br><br> Q24.3 — And roughly what month and year was the issue done with, in that it was resolved or all had given up trying to resolve it further?<br><br> (Includes “Don’t know” response option; end date cannot precede September 2023.)
+</td>
+<td style="border:1px solid #ddd; padding:6px;">
+Resolved or concluded in less than one year
+</td>
+<td style="border:1px solid #ddd; padding:6px; text-align:center;">
+<b>1</b>
+</td>
+</tr>
+<tr>
+<td style="border:1px solid #ddd; padding:6px;">
+Resolved or concluded in one year or more
+</td>
+<td style="border:1px solid #ddd; padding:6px; text-align:center;">
+<b>0</b>
+</td>
+</tr>
+<tr>
+<td style="border:1px solid #ddd; padding:6px;">
+Don’t know
+</td>
+<td style="border:1px solid #ddd; padding:6px; text-align:center;">
+<b>0</b>
+</td>
+</tr>
+<tr>
+<td style="border:1px solid #ddd; padding:6px;">
+End date precedes September 2023 (invalid)
+</td>
+<td style="border:1px solid #ddd; padding:6px; text-align:center;">
+<b>0</b>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+## Outcome of the Resolution Process
+
+This indicator measures whether individuals who experienced a justice problem were ultimately able to resolve it, regardless of the method or channel used. It reflects people’s success in achieving closure or resolution for their justice problems and serves as a direct outcome measure of access to justice.
+
+## Measurement Framework {.smaller}
+
+<br> **Universe**: People who experienced a legal problem. <br> <br>
+
+<div style="font-size: 80%; width: 100%;">
+
+
+<table style="width:100%; border-collapse:collapse; border:1px solid #ddd; table-layout:fixed; font-size:0.9em;">
+<colgroup>
+<col style="width: 22%;">
+<col style="width: 50%;">
+<col style="width: 16%;">
+<col style="width: 12%;">
+</colgroup>
+<thead style="background-color:#f2f2f2;">
+<tr>
+<th style="border:1px solid #ddd; padding:6px;">
+Indicator
+</th>
+<th style="border:1px solid #ddd; padding:6px;">
+Legal Needs Survey Question
+</th>
+<th style="border:1px solid #ddd; padding:6px;">
+Response Category
+</th>
+<th style="border:1px solid #ddd; padding:6px;">
+Coding<br>(1 = resolved,<br>0 = not resolved)
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td rowspan="5" style="border:1px solid #ddd; padding:6px; vertical-align:top;">
+<b>Outcome of the Resolution Process</b>
+</td>
+<td rowspan="5" style="border:1px solid #ddd; padding:6px; vertical-align:top;">
+Q27 — Is this issue still ongoing or is it done with, either because it is resolved or because you, and anyone else, have given up trying to resolve it?<br><br>
+</td>
+<td style="border:1px solid #ddd; padding:6px;">
+Done with, issue resolved
+</td>
+<td style="border:1px solid #ddd; padding:6px; text-align:center;">
+<b>1</b>
+</td>
+</tr>
+<tr>
+<td style="border:1px solid #ddd; padding:6px;">
+Done with, issue persists, but all have given up trying to resolve it further
+</td>
+<td style="border:1px solid #ddd; padding:6px; text-align:center;">
+<b>0</b>
+</td>
+</tr>
+<tr>
+<td style="border:1px solid #ddd; padding:6px;">
+Ongoing / Too early to say
+</td>
+<td style="border:1px solid #ddd; padding:6px; text-align:center;">
+<b>NA</b>
+</td>
+</tr>
+<tr>
+<td style="border:1px solid #ddd; padding:6px;">
+Don’t know
+</td>
+<td style="border:1px solid #ddd; padding:6px; text-align:center;">
+<b>NA</b>
+</td>
+</tr>
+</tbody>
+</table>
+</div>

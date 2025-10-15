@@ -1,0 +1,1250 @@
+---
+title: "Codebook Legal Needs Survey"
+author: "Data Analytics Unit <br>and <br>Access to Justice Team"
+format:
+   revealjs: 
+    embed-resources: true
+    toc-depth: 1
+editor: visual
+---
+
+# Objective
+
+This codebook aims to provide a standardized method for coding all the concepts developed by the World Justice Project’s Access to Justice team from the Legal Needs Survey. These concepts are designed to assess people's experiences within a country when resolving a justiciable problem.
+
+# Legal Needs Survey
+
+## What is a legal needs survey?
+
+A legal needs survey is a large-scale empirical survey that examines the public’s experience with justiciable problems—civil legal issues that individuals may or may not recognize as legal and that can be addressed through formal or informal channels. 
+
+- These surveys explore how people encounter and resolve legal problems, focusing on access to justice, sources of advice and representation, dispute resolution processes, the trajectory of the resolution process, and the broader social and economic hardships associated with legal issues.
+
+# Codebook
+
+# People’s Legal Needs
+
+## Problem Prevalence
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+## Measurement within the Conceptual Framework {.smaller}
+<br>
+**Universe**: All people.
+<br>
+<br>
+<div style="font-size: 80%;">
+<table style="width:100%; border-collapse: collapse; border-bottom: 2px solid black;">
+    <tr>
+        <th style="width: 25%;">Indicator</th>
+        <th style="width: 32.5%;">Legal Needs Survey Question</th>
+        <th style="width: 20%;">Response Category</th>
+        <th style="width: 22.5%; text-align: center;">Coding <br>(1 = met need, <br>0 = unmet need)</th>
+    </tr>
+    <tr>
+        <td><b>Problem prevalence</b></td>
+        <td>In the last two years, have you had [list of problems]? 
+        </td>
+        <td style="text-align: center;"> Yes </td>
+        <td style="text-align: center;"><b>[IF SEVERITY >= 4]</b><br><br>
+        <b>1</b><br><br>
+        <b>[IF SEVERITY < 4 or Don't Know]</b><br><br>
+        <b>0<br></b>
+        </td>
+    </tr>
+    <tr>
+        <td style="border-bottom: 2px solid black;"></td>
+        <td style="border-bottom: 2px solid black;"></td>
+        <td style="border-bottom: 2px solid black; text-align: center;"> No / Don't know </td>
+        <td style="text-align: center; border-bottom: 2px solid black;"><b>0</b></td>
+    </tr>
+</table>
+</div>
+
+## Code {.smaller}
+
+::: panel-tabset
+### Python
+``` r
+# ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+# 
+# Problem prevalence                                                            
+# 
+# ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+master_data = df.copy()
+
+legal_problems = [
+    "A1", "A2", "A3", 
+    "B1", "B2", "B3", "B4", 
+    "C1", "C2", "C3", "C4", 
+    "D1", "D2", "D3", "D4", "D5", "D6", 
+    "E1", "E2", "E3", 
+    "F1", "F2", 
+    "G1", "G2", "G3", 
+    "H1", "H2", "H3", 
+    "I1", 
+    "J1", "J2", "J3", "J4", 
+    "K1", "K2", "K3",
+    "L1", "L2"
+]
+
+legprob_bin = [f"AJP_{lp}_bin" for lp in legal_problems]
+legprob_sev = [f"AJP_{lp}_sev" for lp in legal_problems]
+
+# Step 1: Convert legprob_bin columns to binary (1 if value == 1, otherwise 0)
+
+master_data[legprob_bin] = master_data[legprob_bin].replace({"Yes": 1, "No": 0}).fillna(0).astype(int)
+
+
+master_data[legprob_bin] = master_data[legprob_bin].applymap(
+    lambda x: 1 if x == 1 else (0 if x == 2 else np.nan)
+)
+
+# Step 2: Create 'legprob' column: 1 if any legprob_bin column is 1, otherwise 0
+
+master_data["legprob"] = (master_data[legprob_bin].sum(axis=1) > 0).astype(int)
+
+# Step 3: Convert legprob_sev columns:
+# - 1 if value is between 4 and 97
+# - 0 if value is less than 4
+# - NaN otherwise
+
+master_data[legprob_sev] = master_data[legprob_sev].applymap(
+    lambda x: 1 if 4 <= x < 98 else (0 if x < 4 else np.nan)
+)
+# Step 4: Create 'legprob_sev' column: 1 if any legprob_sev column is 1, otherwise 0
+
+master_data["legprob_sev"] = (master_data[legprob_sev].sum(axis=1) > 0).astype(int)
+
+# Step 5: Apply the function of estimation
+
+legprob_sev = avg_estimation(master_data, "legprob_sev")
+
+display(legprob_sev)
+
+```
+
+### R
+
+``` r
+# ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+# 
+# Problem prevalence                                                            
+# 
+# ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+# Define a vector of legal problem categories
+
+legal_problems <- c(
+  "A1", "A2", "A3", 
+  "B1", "B2", "B3", "B4", 
+  "C1", "C2", "C3", "C4", 
+  "D1", "D2", "D3", "D4", "D5", "D6", 
+  "E1", "E2", "E3", 
+  "F1", "F2", 
+  "G1", "G2", "G3", 
+  "H1", "H2", "H3", 
+  "I1", 
+  "J1", "J2", "J3", "J4", 
+  "K1", "K2", "K3",
+  "L1", "L2"
+)
+
+# Generate column names for binary indicators of legal problems
+
+legprob_bin <- paste0("AJP_", legal_problems, "_bin")
+
+# Generate column names for severity indicators of legal problems
+
+legprob_sev <- paste0("AJP_", legal_problems, "_sev")
+
+# Process the dataset `master_data.df` to create `A2J.df`
+
+A2J.df <- master_data.df %>%
+
+  # Convert binary indicators to 1 if they are equal to 1, otherwise 0
+  
+  mutate(across(all_of(legprob_bin), ~ as.integer(. == 1))) %>%
+  
+  # Create a new variable `legprob` indicating whether the person has at least one legal problem
+  mutate(
+    legprob = as.integer(
+      rowSums(
+        across(
+          all_of(legprob_bin)), na.rm = TRUE) > 0)  # If at least one legal problem exists, set to 1
+  ) %>%
+  
+  # Recode severity indicators: 
+  #  - If value is between 4 and 97, set to 1 (severe problem)
+  #  - If value is below 4, set to 0 (not severe)
+  #  - If value is 98 or higher, set to NA (missing or not applicable)
+  
+  mutate(
+    across(
+      all_of(legprob_sev), 
+      ~if_else(. > 3 & . < 98, 1, 
+               if_else(. < 4, 0, 
+                       NA_real_)
+      )
+    )
+  ) %>%
+  
+  # Create a summary severity indicator `legprob_sev`:
+  #  - If at least one severe legal problem exists, set to 1
+  #  - Otherwise, set to 0
+  
+  mutate(
+    legprob_sev = 
+      as.integer(
+        rowSums(
+          across(
+            all_of(legprob_sev)), na.rm = TRUE) > 0
+      )
+  )
+
+# Apply the `avg_estimation` function to estimate the prevalence of severe legal problems
+
+legprob_sev <- avg_estimation(A2J.df, "legprob_sev")
+
+  
+```
+### Stata
+
+``` r
+# ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+# 
+# Problem prevalence                                                            
+# 
+# ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+foreach var in q20_A1 q20_A2 q20_A3 q20_B1 q20_B2 q20_B3 q20_B4 q20_C1 q20_C2 q20_C3 q20_C4 q20_D1 q20_D2 q20_D3 q20_D4 q20_D5 q20_D6 q20_E1 q20_E2 q20_E3 q20_F1 q20_F2 q20_G1 q20_G2 q20_G3 q20_H1 q20_H2 q20_H3 q20_I1 q20_J1 q20_J2 q20_J3 q20_J4 q20_K1 q20_K2 q20_K3 q20_L1 q20_L2 {
+local lname="`var'"
+		gen `lname'_sev4=`var' if `var'>=4 & `var'!=. & `var'!=99
+	}
+
+egen ndisputes_4=rownonmiss(q20_A1_sev4-q20_L2_sev4)
+gen had_dispute_4=1 if ndisputes_4>0 & ndisputes_4~=. & had_dispute==1
+
+replace had_dispute_4=0 if ndisputes_4==0
+
+Lines 509-512:
+**Extra check NRC added due to a handful of instances where had_dispute_4 ==1 even though sev_selected==.
+
+replace had_dispute_4=0 if sev_selected<4 & sev_selected!=. 	
+replace had_dispute_4=0 if sev_selected==.
+
+  
+```
+:::
+
+# Access to Dispute Resolution Mechanisms
+
+## Access to Formal and Informal Mechanisms for Dispute Resolution
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+# People’s Journeys to Justice
+
+## Access to Appropriate Information and Advice
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+## Measurement within the Conceptual Framework  {.smaller}
+<br>
+**Universe**: People who experienced a non-trivial (severity less than 4) legal problem in the previous two years.
+<br>
+<br>
+
+<div style="font-size: 80%;">
+<table style="width:100%; border-collapse: collapse; border-bottom: 2px solid black;">
+    <tr>
+        <th style="width: 25%;">Indicator</th>
+        <th style="width: 32.5%;">Legal Needs Survey Question</th>
+        <th style="width: 20%;">Response Category</th>
+        <th style="width: 22.5%;text-align: center;">Coding <br>(1 = met need, <br>0 = unmet need)</th>
+    </tr>
+    <tr>
+        <td><b>1. Legal Empowerment & Capability</b></td>
+        <td>I knew where to get good information and advice about resolving the problem.</td>
+        <td style="text-align: center;">Strongly agree / Agree</td>
+        <td style="text-align: center;"><b>1</b></td>
+    </tr>
+    <tr>
+        <td style="border-bottom: 2px solid black;"></td>
+        <td style="border-bottom: 2px solid black;"></td>
+        <td style="border-bottom: 2px solid black;text-align: center;">Strongly disagree / Disagree / Don't Know</td>
+        <td style="text-align: center; border-bottom: 2px solid black;"><b>0</b></td>
+    </tr>
+</table>
+</div>
+## Code {.smaller}
+
+::: panel-tabset
+### Python
+``` r
+## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+##
+## Access to proper information and advice
+##
+## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+# Create a copy of the original dataset to work on, preventing accidental modifications to `master_data`
+
+A2J_df       = master_data.copy()
+
+# Step 1: Filter for people with a non-trivial legal problem
+
+# Filter only individuals who reported at least one legal problem (legprob == 1)
+# AND at least one severe legal problem (legprob_sev == 1)
+
+
+A2J_problems = A2J_df[(A2J_df["legprob"] == 1) & (A2J_df["legprob_sev"] == 1)]
+
+# Step 2: Recode 'AJE_infosource' into 'access2info'
+
+# Create a new column `access2info` based on `AJE_infosource`:
+# - Assign 1 if the person was able to access information (values 1 or 2)
+# - Assign 0 if the person was NOT able to access information (values 3, 4, or 98)
+# - Assign NaN (missing value) for all other cases
+
+A2J_problems["access2info"] = A2J_problems["AJE_infosource"].apply(
+    lambda x: 1 if x in ['Agree', 'Strongly agree'] 
+    else (0 if x in ['Disagree', 'Strongly disagree', "Don't know"] else np.nan)
+)
+
+# Step 3: Apply the function of estimation
+
+access2info = avg_estimation(A2J_problems, "access2info")
+
+display(access2info)
+
+```
+
+### R
+
+``` r
+## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+##
+### Access to Proper Information and Advice
+##
+## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+# Step 1: Filter for individuals who reported at least one legal problem (`legprob == 1`) 
+# and at least one severe legal problem (`legprob_sev == 1`).
+
+access2info <- A2J.df %>%
+  filter(legprob == 1) %>%  # Keep only respondents with at least one legal problem
+  filter(legprob_sev == 1) %>%  # Keep only respondents with at least one severe legal problem
+  mutate(
+    # Step 2: Create the `access2info` variable based on the `AJE_infosource` responses
+    access2info = case_when(
+      AJE_infosource == 1 ~ 1,  # Respondents were able to access information
+      AJE_infosource == 2 ~ 1,  # Respondents were able to access information
+      AJE_infosource == 3 ~ 0,  # Respondents were NOT able to access information
+      AJE_infosource == 4 ~ 0,  # Respondents were NOT able to access information
+      AJE_infosource == 98 ~ 0  # Respondents were NOT able to access information
+    )
+  )
+
+# Step 3: Apply the `avg_estimation` function to estimate the prevalence of `access2info`
+# The function likely calculates a weighted average based on population proportions.
+
+access2info <- avg_estimation(access2info, "access2info")
+  
+```
+### Stata
+
+``` r
+
+  
+```
+:::
+
+## Access to Adequate Assistance and Representation
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+## Measurement within the Conceptual Framework  {.smaller}
+**Universe**: People who experienced a non-trivial (severity less than 4) legal problem in the previous two years.
+<br>
+<br>
+<div style="font-size: 50%;">
+<table style="width:100%; border-collapse: collapse;">
+    <tr>
+        <th style="width: 20%;">Indicator</th>
+        <th style="width: 35%;">Legal Needs Survey Question</th>
+        <th style="width: 22.5%;">Response Category</th>
+        <th style="width: 22.5%; text-align: center;">Coding <br>(1 = met need, <br>0 = unmet need)</th>
+    </tr>
+    <tr>
+      <td><b>2. Appropriate Assistance</b></td>
+      <td>
+      Did you, or someone acting on your behalf, obtain information, advice, or representation to help you better understand or resolve the problem? <br><br> 
+      <b>[IF YES]</b> <br><br>
+      Which advisers did you contact?
+      </td>
+      <td style="text-align: center;">A relative, friend, or acquaintance <br><br>
+      Did any of the family or friends who you contacted go to law school or work in an organization that provides legal advice? 
+      </td>
+      <td style="text-align: center;"><b>[IF YES]</b> <br><b>1</b> <br><br> <b>[IF NO]</b> <br><b>0</b>
+      </td>
+    </tr>
+    <tr>
+        <td></td>
+        <td></td>
+        <td style="text-align: center;">A lawyer, professional advisor, or advice service</td>
+        <td style="text-align: center;"><b>1</b></td>
+    </tr>
+    <tr>
+        <td></td>
+        <td></td>
+        <td style="text-align: center;">A government legal aid office</td>
+        <td style="text-align: center;"><b>1</b></td>
+    </tr>
+    <tr>
+        <td></td>
+        <td></td>
+        <td style="text-align: center;">A court, government body, or the police</td>
+        <td style="text-align: center;"><b>1</b></td>
+    </tr>
+    <tr>
+        <td></td>
+        <td></td>
+        <td style="text-align: center;">A health or welfare professional</td>
+        <td style="text-align: center;"><b>1</b></td>
+    </tr>
+    <tr>
+        <td></td>
+        <td></td>
+        <td style="text-align: center;">A trade union or employer</td>
+        <td style="text-align: center;"><b>1</b></td>
+    </tr>
+    <tr>
+        <td></td>
+        <td></td>
+        <td style="text-align: center;">A religious or community leader or organization</td>
+        <td style="text-align: center;"><b>1</b></td>
+    </tr>
+    <tr>
+        <td></td>
+        <td></td>
+        <td style="text-align: center;">A civil society organization or charity</td>
+        <td style="text-align: center;"><b>1</b></td>
+    </tr>
+    <tr>
+        <td></td>
+        <td></td>
+        <td style="text-align: center;">Other organization</td>
+        <td style="text-align: center;"><b>0</b></td>
+    </tr>
+</table>
+</div>
+
+## Measurement within the Conceptual Framework  {.smaller}
+<div style="font-size: 50%;">
+<table style="width:100%; border-collapse: collapse; border-bottom: 2px solid black;">
+    <tr>
+        <th style="width: 20%;">Indicator</th>
+        <th style="width: 35%;">Legal Needs Survey Question</th>
+        <th style="width: 22.5%;">Response Category</th>
+        <th style="width: 22.5%; text-align: center;">Coding <br>(1 = met need, <br>0 = unmet need)</th>
+    </tr>
+    <tr>
+      <td><b>2. Appropriate Assistance</b></td>
+      <td>
+      Did you, or someone acting on your behalf, obtain information, advice, or representation to help you better understand or resolve the problem?<br><br> 
+      <b>[IF NO]</b><br><br> 
+      What was the main reason why you did not consider getting information, advice, or representation from anyone?
+      </td>
+      <td style="text-align: center;">I thought the issues was not important or not difficult to resolve 
+      </td>
+      <td style="text-align: center;"><b>1</b></td>
+    </tr>
+    <tr>
+        <td></td>
+        <td></td>
+        <td style="text-align: center;">Thought the other side was right</td>
+        <td style="text-align: center;"><b>1</b></td>
+    </tr>
+    <tr>
+        <td></td>
+        <td></td>
+        <td style="text-align: center;">I did not think I needed advice</td>
+        <td style="text-align: center;"><b>1</b></td>
+    </tr>
+    <tr>
+        <td></td>
+        <td></td>
+        <td style="text-align: center;">I was concerned about the financial cost</td>
+        <td style="text-align: center;"><b>0</b></td>
+    </tr>
+    <tr>
+        <td></td>
+        <td></td>
+        <td style="text-align: center;">I had received help with a problem before and did not find it useful</td>
+        <td style="text-align: center;"><b>0</b></td>
+    </tr>
+    <tr>
+        <td></td>
+        <td></td>
+        <td style="text-align: center;">I did not know who to call or where to get advice</td>
+        <td style="text-align: center;"><b>0</b></td>
+    </tr>
+    <tr>
+        <td></td>
+        <td></td>
+        <td style="text-align: center;">I did not know I could get advice for this problem:</td>
+        <td style="text-align: center;"><b>0</b></td>
+    </tr>
+    <tr>
+        <td></td>
+        <td></td>
+        <td style="text-align: center;">Was scared to get advice</td>
+        <td style="text-align: center;"><b>0</b></td>
+    </tr>
+    <tr>
+        <td></td>
+        <td></td>
+        <td style="text-align: center;">Advisers were too far away or it would take too much time</td>
+        <td style="text-align: center;"><b>0</b></td>
+    </tr>
+    <tr>
+        <td></td>
+        <td></td>
+        <td style="text-align: center;">Other</td>
+        <td style="text-align: center;"><b>0</b></td>
+    </tr>
+</table>
+</div>
+
+
+## Code {.smaller}
+
+::: panel-tabset
+### Python
+``` r
+## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+##
+## Access to proper representation
+##
+## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+# Create a copy of the original dataset to work on, preventing accidental modifications to `master_data`
+
+A2J_df       = master_data.copy()
+
+# Step 1: Filter for people with a non-trivial legal problem
+
+# Filter only individuals who reported at least one legal problem (legprob == 1)
+# AND at least one severe legal problem (legprob_sev == 1)
+
+
+A2J_problems = A2J_df[(A2J_df["legprob"] == 1) & (A2J_df["legprob_sev"] == 1)]
+
+# Step 2: Replace `99` in `AJD_noadvice_reason` with NaN
+
+A2J_problems["AJD_noadvice_reason"] = A2J_problems["AJD_noadvice_reason"].replace("No answer", np.nan)
+
+# Step 3 : Recode 'AJD_noadvice_reason' into 'access2rep'
+
+A2J_problems["access2rep"] = A2J_problems.apply(
+    lambda row: 1 if (
+        # 1. Able to access advice from a formal source --> not in gap
+        (
+            row["AJD_adviser_2"] == 'Yes' or 
+            row["AJD_adviser_3"] == 'Yes' or
+            row["AJD_adviser_4"] == 'Yes' or 
+            row["AJD_adviser_5"] == 'Yes' or
+            row["AJD_adviser_6"] == 'Yes' or 
+            row["AJD_adviser_8"] == 'Yes'
+        ) and (
+            row["AJD_inst_advice"] == 'Yes'
+        )
+    ) else 1 if (
+        # 2. Did not access advice because problem was not important --> not in gap
+        (row["AJD_noadvice_reason"] in ["I thought the issue was not important or not difficult to resolve", 
+                                       "I did not think I needed advice"])
+        and 
+        (row["AJD_inst_advice"] == 'No')
+    ) else 1 if (
+        # 3. If friend or family has a legal background --> not in gap
+        row["AJD_inst_advice"] == 'Yes' 
+        and 
+        row["AJD_adviser_1"] == 'Yes' 
+        and 
+        row["AJD_expert_adviser"] == 'Yes'
+    ) else 0 if (
+        # 4. Accessed advice from a friend, religious org, or other --> in the justice gap
+        (
+            row["AJD_adviser_1"]  == 'Yes' or 
+            row["AJD_adviser_7"]  == 'Yes' or 
+            row["AJD_adviser_9"]  == 'Yes' or 
+            row["AJD_adviser_98"] == 'Yes'
+        )
+        and 
+        (
+            row["AJD_inst_advice"] == 'Yes'
+        )
+    ) else 0 if (
+        # 5. If reason for not seeking advice falls into specific categories --> in the justice gap
+        row["AJD_noadvice_reason"] in ["Thought the other side was right", 
+                                       "I was concerned about the financial cost", 
+                                       "I had received help with a problem before and did not find it useful", 
+                                       "I did not know who to call or where to get advice", 
+                                       "I did not know I could get advice for this problem", 
+                                       "Was scared to get advice", 
+                                       "Advisers were too far away or it would take too much time", 
+                                       "Other",
+                                       "Don't know"] 
+        and 
+        row["AJD_inst_advice"] == "No"
+    ) else 0 if (
+        # 6. If AJD_inst_advice is 98 --> in the justice gap
+        row["AJD_inst_advice"] == "Don't know"
+    ) else np.nan,  # Default: Assign NaN if no condition matches
+    axis=1
+)
+
+
+# Step 4: Apply the function of estimation
+access2rep = avg_estimation(A2J_problems, "access2rep")
+
+display(access2rep)
+
+```
+
+### R
+
+``` r
+## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+##
+### Access to proper representation                                                                             
+##
+## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+access2rep <- A2J.df %>%
+  filter(legprob == 1, legprob_sev == 1) %>%  
+  
+  # Step 2: Recode `AJD_noadvice_reason` to replace `99` with `NA`
+  
+  mutate(
+    AJD_noadvice_reason = case_when(
+      AJD_noadvice_reason == 99 ~ NA_real_,  # Assign missing value if response was "99"
+      TRUE ~ AJD_noadvice_reason  # Keep all other values unchanged
+    )
+  ) %>%
+  
+  # Step 3: Create the `access2rep` variable based on `AJD_inst_advice` and `AJD_noadvice_reason`
+  
+  mutate(
+    access2rep = case_when(
+      # 1. Able to access advice from a formal source
+      (AJD_adviser_2 == 1 | AJD_adviser_3 == 1 | AJD_adviser_4 == 1 | 
+         AJD_adviser_5 == 1 | AJD_adviser_6 == 1 | AJD_adviser_8 == 1) & 
+        (AJD_inst_advice == 1) ~ 1, 
+      
+      # 2. Did not access advice because problem was not important
+      (AJD_noadvice_reason %in% c(1, 3)) & (AJD_inst_advice == 2) ~ 1,
+      
+      # 3. If friend or family has a legal background, people have access to a good representation
+      (AJD_inst_advice == 1 & AJD_adviser_1 == 1 & AJD_expert_adviser == 1) ~ 1,
+      
+      # 4. Accessed advice from a friend, religious org, or other --> in the justice gap
+      (AJD_adviser_1 == 1 | AJD_adviser_7 == 1 | AJD_adviser_9 == 1 | 
+         AJD_adviser_98 == 1) & (AJD_inst_advice == 1) ~ 0,
+      
+      # 5. If reason for not seeking advice falls into specific categories --> in the justice gap
+      (AJD_noadvice_reason %in% c(2, 4, 5, 6, 7, 8, 9, 10, 98)) & (AJD_inst_advice == 2) ~ 0,
+      
+      # 6. If `AJD_inst_advice` is 98 --> in the justice gap
+      AJD_inst_advice == 98 ~ 0,
+      
+      # Default case: Assign `NA_real_` if no condition matches
+      TRUE ~ NA_real_
+    )
+  )
+
+# Step 4: Apply the `avg_estimation` function to estimate the prevalence of `access2rep`
+
+access2rep <- avg_estimation(access2rep, "access2rep")
+
+  
+```
+### Stata
+
+``` r
+
+  
+```
+:::
+
+## Fairness of the Resolution Process
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+## Measurement within the Conceptual Framework  {.smaller}
+<br>
+**Universe**: People who experienced a non-trivial legal problem (severity less than 4) in the previous two years and whose problem resolution had concluded.
+<br>
+<br>
+<div style="font-size: 70%;">
+<table style="width:100%; border-collapse: collapse; border-bottom: 2px solid black;">
+    <tr>
+        <th style="width: 25%;">Indicator</th>
+        <th style="width: 32.5%;">Legal Needs Survey Question</th>
+        <th style="width: 20%;">Response Category</th>
+        <th style="width: 22.5%; text-align: center;">Coding <br>(1 = met need, <br>0 = unmet need)</th>
+    </tr>
+    <tr>
+        <td><b>Fairness of the Resolution Process</b></td>
+        <td>Regardless of the outcome, do you think that the process followed to solve the problem was: Fair?
+        </td>
+        <td style="text-align: center;">Yes</td>
+        <td style="text-align: center;"><b>1</b></td>
+    </tr>
+    <tr>
+        <td></td>
+        <td>
+        </td>
+        <td style="text-align: center;">No / Don't Know
+        </td>
+        <td style="text-align: center;"><b> 0 </b>
+        </td>
+    </tr>
+    <tr>
+        <td style="border-bottom: 2px solid black;"><b></b></td>
+        <td style="border-bottom: 2px solid black;"> Is the problem ongoing or done with? By ‘done with’ I mean
+        that the problem is either completely resolved or that it persists, but that you and everybody else have
+        given up all actions to resolve it further.</td>
+        <td style="border-bottom: 2px solid black; text-align: center;"> Ongoing /Too early to say/ Don't know </td>
+        <td style="text-align: center; border-bottom: 2px solid black;"><b> • Missing value </b></td>
+    </tr>
+</table>
+</div>
+
+## Code {.smaller}
+
+::: panel-tabset
+### Python
+``` r
+## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+##
+## Process Barriers: Fairness
+##
+## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+# Create a copy of the original dataset to work on, preventing accidental modifications to `master_data`
+
+A2J_df       = master_data.copy()
+
+# Step 1: Filter for people with a non-trivial legal problem
+
+# Filter only individuals who reported at least one legal problem (legprob == 1)
+# AND at least one severe legal problem (legprob_sev == 1)
+
+
+A2J_problems = A2J_df[(A2J_df["legprob"] == 1) & (A2J_df["legprob_sev"] == 1)]
+
+# Step 2: Recode AJR_fair
+
+A2J_problems["rp_fair"] = A2J_problems.apply(
+    lambda row: 1 if (
+        # 1. If you incurred costs, but they were easy to pay --> not in gap
+        (row["AJR_state_noresol"] in ["Done with, but problem persists", "Done with, problem fully resolved"] or 
+         row["AJR_state_resol"]   in ["Done with, but problem persists", "Done with, problem fully resolved"]) and
+        (row["AJR_fair"]          in ["Yes"]) 
+    ) else 0 if (
+        # 2. If you incurred costs that were difficult to pay --> in the justice gap
+        (row["AJR_state_noresol"] in ["Done with, but problem persists", "Done with, problem fully resolved"] or 
+         row["AJR_state_resol"]   in ["Done with, but problem persists", "Done with, problem fully resolved"]) and
+        (row["AJR_fair"]          in ["No", "Don't know"]) 
+    ) else np.nan,  # Default: Assign NaN if no condition matches
+    axis=1
+)
+
+# Step 3: Apply the function of estimation
+rp_fair = avg_estimation(A2J_problems, "rp_fair")
+
+display(rp_fair)
+```
+
+### R
+
+``` r
+## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+##
+### Process Barriers: Fairness                                                                               ----
+##
+## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+# Step 1: Filter for individuals who reported at least one legal problem (`legprob == 1`) 
+# and at least one severe legal problem (`legprob_sev == 1`).
+
+rp_fair <- A2J.df %>%
+  filter(legprob == 1, legprob_sev == 1) %>%
+  
+  # Step 2: Create the `rp_fair` variable based on fairness perception
+  mutate(
+    rp_fair = case_when(
+      # 1. Process was perceived as fair → not in the justice gap
+      AJR_fair == 1 ~ 1,
+      
+      # 2. Process was perceived as unfair → in the justice gap
+      AJR_fair == 2 ~ 0,
+      
+      # 3. Respondent indicated "Don’t know" (coded as 98) → in the justice gap
+      AJR_fair == 98 ~ 0,
+      
+      # 4. Default case: Assign `NA_real_` if no condition matches
+      TRUE ~ NA_real_
+    )
+  )
+
+# Step 3: Apply the `avg_estimation` function to estimate the prevalence of `rp_fair`
+# The function likely calculates a weighted average based on population proportions.
+
+rp_fair <- avg_estimation(rp_fair, "rp_fair")
+
+```
+### Stata
+
+``` r
+  
+```
+:::
+
+## Timeliness of the Resolution Process
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+## Measurement within the Conceptual Framework {.smaller}
+<br>
+**Universe**: People who experienced a non-trivial legal problem (severity less than 4) in the previous two years and whose problem resolution had concluded.
+<br>
+<br>
+<div style="font-size: 70%;">
+<table style="width:100%; border-collapse: collapse; border-bottom: 2px solid black;">
+    <tr>
+        <th style="width: 25%;">Indicator</th>
+        <th style="width: 32.5%;">Legal Needs Survey Question</th>
+        <th style="width: 20%;">Response Category</th>
+        <th style="width: 22.5%; text-align: center;">Coding <br>(1 = met need, <br>0 = unmet need)</th>
+    </tr>
+    <tr>
+        <td><b>Timeliness of the Resolution Process</b></td>
+        <td>How many months did it take to resolve the problem, from the moment you turned to a court, government office, or third party?</td>
+        <td style="text-align: center;"> < 1 year </td>
+        <td style="text-align: center;"><b>1</b></td>
+    </tr>
+    <tr>
+        <td></td>
+        <td></td>
+        <td style="text-align: center;"> `>` 1 year / Don't know </td>
+        <td style="text-align: center;"><b>0</b></td>
+    </tr>
+    <tr>
+        <td style="border-bottom: 2px solid black;"><b></b></td>
+        <td style="border-bottom: 2px solid black;">Is the problem ongoing or done with? By ‘done with’ I mean
+        that the problem is either completely resolved or that it persists, but that you and everybody else have
+        given up all actions to resolve it further.</td>
+        <td style="border-bottom: 2px solid black;text-align: center;"> Ongoing /Too early to say/ Don't know </td>
+        <td style="text-align: center; border-bottom: 2px solid black;"><b> • Missing value </b></td>
+    </tr>
+</table>
+</div>
+## Code {.smaller}
+
+::: panel-tabset
+### Python
+``` r
+## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+##
+## Process Barriers: Timeliness
+##
+## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+# Create a copy of the original dataset to work on, preventing accidental modifications to `master_data`
+
+A2J_df       = master_data.copy()
+
+# Step 1: Filter for people with a non-trivial legal problem
+
+# Filter only individuals who reported at least one legal problem (legprob == 1)
+# AND at least one severe legal problem (legprob_sev == 1)
+
+
+A2J_problems = A2J_df[(A2J_df["legprob"] == 1) & (A2J_df["legprob_sev"] == 1)]
+
+# Step 2: Recode AJR_solving time
+
+A2J_problems["rp_time"] = A2J_problems.apply(
+    lambda row: 1 if (
+        # 1. Problem resolved in one year or less 
+        (0 <= row["AJR_solvingtime"] < 13) and
+        (row["AJR_state_noresol"] in ["Done with, but problem persists", "Done with, problem fully resolved"] or 
+         row["AJR_state_resol"] in ["Done with, but problem persists", "Done with, problem fully resolved"])
+    ) else 0 if (
+        # 2. Problem solved in more than one year 
+        (row["AJR_solvingtime"] > 12) and
+        (row["AJR_state_noresol"] in ["Done with, but problem persists", "Done with, problem fully resolved"] or 
+         row["AJR_state_resol"] in ["Done with, but problem persists", "Done with, problem fully resolved"])
+    ) else 0 if (
+        # If solving time is -8888 
+        row["AJR_solvingtime"] == -8888
+    ) else np.nan if (
+        # If solving time is -9999 → NA
+        row["AJR_solvingtime"] == -9999
+    ) else np.nan if (
+        # 3. Problem ongoing → NA
+        row["AJR_state_noresol"] in ["Ongoing", "Too early to say"] or 
+        row["AJR_state_resol"] in ["Ongoing", "Too early to say"]
+    ) else np.nan,  # Default: NA if no condition matches
+    axis=1
+)
+
+# Step 3: Apply the function of estimation
+rp_time = avg_estimation(A2J_problems, "rp_time")
+
+display(rp_time)
+
+```
+
+### R
+
+``` r
+# ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+# 
+# Process Barriers: Timeliness                                                            
+# 
+# ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+# Step 1: Filter for individuals who reported at least one legal problem (`legprob == 1`) 
+# and at least one severe legal problem (`legprob_sev == 1`).
+rp_time <- A2J.df %>%
+  filter(legprob == 1, legprob_sev == 1) %>% 
+  
+  # Step 2: Create the `rp_time` variable based on `AJR_solvingtime`
+  mutate(
+    rp_time = case_when(
+      # 1. Problem resolved in one year or less --> not in justice gap
+      (AJR_solvingtime >= 0 & AJR_solvingtime < 13) & 
+        (AJR_state_noresol %in% c(3, 4) | AJR_state_resol %in% c(3, 4)) ~ 1,
+      
+      # 2. Problem solved in more than one year --> in the justice gap
+      (AJR_solvingtime > 12) & 
+        (AJR_state_noresol %in% c(3, 4) | AJR_state_resol %in% c(3, 4)) ~ 0,
+      
+      # 3. Problem remains unresolved with unknown resolution time --> in the justice gap
+      AJR_solvingtime == -8888 ~ 0, 
+      
+      # 4. Missing or invalid resolution time --> NA
+      AJR_solvingtime == -9999 ~ NA_real_,
+      
+      # 5. Problem still ongoing (not resolved) --> NA
+      AJR_state_noresol %in% c(1, 2) | AJR_state_resol %in% c(1, 2) ~ NA_real_,
+      
+      # Default case: Assign `NA_real_` if no condition matches
+      TRUE ~ NA_real_
+    )
+  )
+
+# Step 3: Apply the `avg_estimation` function to estimate the prevalence of `rp_time`
+# The function likely calculates a weighted average based on population proportions.
+rp_time <- avg_estimation(rp_time, "rp_time")
+
+```
+### Stata
+
+``` r
+  
+```
+:::
+
+## Costliness of the Resolution Process
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+
+## Measurement within the Conceptual Framework  {.smaller}
+<br>
+**Universe**: People who experienced a non-trivial legal problem (severity less than 4) in the previous two years and whose problem resolution had concluded.
+<br>
+<br>
+<div style="font-size: 55%;">
+<table style="width:100%; border-collapse: collapse; border-bottom: 2px solid black;">
+    <tr>
+        <th style="width: 25%;">Indicator</th>
+        <th style="width: 32.5%;">Legal Needs Survey Question</th>
+        <th style="width: 20%;">Response Category</th>
+        <th style="width: 22.5%;text-align: center;">Coding <br>(1 = met need, <br>0 = unmet need)</th>
+    </tr>
+    <tr>
+        <td><b>Costliness of the Resolution Process</b></td>
+        <td>Did you personally incur costs (other than your time) in order to solve the problem?
+        </td>
+        <td style="text-align: center;">No</td>
+        <td style="text-align: center;"><b>1</b></td>
+    </tr>
+    <tr>
+        <td></td>
+        <td>
+        </td>
+        <td style="text-align: center;">Yes<br><br>
+        How difficult was it to find the money to meet these costs?
+        </td>
+        <td style="text-align: center;"><b>[IF VERY EASY/SOMEWHAT EASY]</b><br><br>
+        1<br><br>
+        <b>[IF NEARLY IMPOSIBLE/DIFFICULT/DON'T KNOW]</b><br><br>
+        0
+        </td>
+    </tr>
+    <tr>
+        <td style="border-bottom: 2px solid black;"><b></b></td>
+        <td style="border-bottom: 2px solid black;">Is the problem ongoing or done with? By ‘done with’ I mean
+        that the problem is either completely resolved or that it persists, but that you and everybody else have
+        given up all actions to resolve it further.</td>
+        <td style="border-bottom: 2px solid black;text-align: center;"> Ongoing /Too early to say/ Don't know </td>
+        <td style="text-align: center; border-bottom: 2px solid black;"><b> • Missing value </b></td>
+    </tr>
+</table>
+</div>
+
+## Code {.smaller}
+
+::: panel-tabset
+### Python
+``` r
+## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+##
+## Process Barriers: Costliness
+##
+## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+# Create a copy of the original dataset to work on, preventing accidental modifications to `master_data`
+
+A2J_df       = master_data.copy()
+
+# Step 1: Filter for people with a non-trivial legal problem
+
+# Filter only individuals who reported at least one legal problem (legprob == 1)
+# AND at least one severe legal problem (legprob_sev == 1)
+
+
+A2J_problems = A2J_df[(A2J_df["legprob"] == 1) & (A2J_df["legprob_sev"] == 1)]
+
+# Step 2: Recode AJR_solvingcosts
+
+A2J_problems["rp_cost"] = A2J_problems.apply(
+    lambda row: 1 if (
+        # 1. If you incurred costs, but they were easy to pay --> not in gap
+        (row["AJR_state_noresol"] in ["Done with, but problem persists", "Done with, problem fully resolved"] 
+         or row["AJR_state_resol"] in ["Done with, but problem persists", "Done with, problem fully resolved"]) and
+        (row["AJR_costdiff"] in ["Very easy", "Somewhat easy"]) and
+        (row["AJR_solvingcosts"] == "Yes")
+    ) else 0 if (
+        # 2. If you incurred costs that were difficult to pay --> in the justice gap
+        (row["AJR_state_noresol"] in ["Done with, but problem persists", "Done with, problem fully resolved"] or 
+         row["AJR_state_resol"] in ["Done with, but problem persists", "Done with, problem fully resolved"]) and
+        (row["AJR_costdiff"] in ["Difficult", "Nearly impossible", "Don't Know"]) and
+        (row["AJR_solvingcosts"] == "Yes")
+    ) else 1 if (
+        # 3. You did not incur costs -- not in justice gap
+        (row["AJR_state_noresol"] in ["Done with, but problem persists", "Done with, problem fully resolved"] or 
+         row["AJR_state_resol"] in ["Done with, but problem persists", "Done with, problem fully resolved"]) and
+        (row["AJR_solvingcosts"] == "No")
+    ) else np.nan,  # Default: Assign NaN if no condition matches
+    axis=1
+)
+
+# Step 3: Apply the function of estimation
+rp_cost = avg_estimation(A2J_problems, "rp_cost")
+
+display(rp_cost)
+
+```
+
+### R
+
+``` r
+# ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+# 
+# Process Barriers: Costliness                                                           
+# 
+# ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+# Step 1: Filter for individuals who reported at least one legal problem (`legprob == 1`) 
+# and at least one severe legal problem (`legprob_sev == 1`).
+
+rp_cost <- A2J.df %>%
+  filter(legprob == 1, legprob_sev == 1) %>%  
+  
+  # Step 2: Create the `rp_cost` variable based on cost affordability
+  mutate(
+    rp_cost = case_when(
+      # 1. If you incurred costs, but they were easy to pay 
+      (AJR_state_noresol %in% c(3, 4) | AJR_state_resol %in% c(3, 4)) & 
+        (AJR_costdiff %in% c(1, 2)) & 
+        (AJR_solvingcosts == 1) ~ 1,
+      
+      # 2. If you incurred costs that were difficult to pay 
+      (AJR_state_noresol %in% c(3, 4) | AJR_state_resol %in% c(3, 4)) & 
+        (AJR_costdiff %in% c(3, 4, 98)) & 
+        (AJR_solvingcosts == 1) ~ 0,
+      
+      # 3. You did not incur costs 
+      (AJR_state_noresol %in% c(3, 4) | AJR_state_resol %in% c(3, 4)) & 
+        (AJR_solvingcosts == 2) ~ 1,
+      
+      # 4. Default case: Assign `NA_real_` if no condition matches
+      TRUE ~ NA_real_
+    )
+  )
+
+# Step 3: Apply the `avg_estimation` function to estimate the prevalence of `rp_cost`
+# The function likely calculates a weighted average based on population proportions.
+
+rp_cost <- avg_estimation(rp_cost, "rp_cost")
+
+  
+```
+### Stata
+
+``` r
+
+  
+```
+:::
+
+## Outcome of the Resolution Process
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+## Measurement within the Conceptual Framework  {.smaller}
+<br>
+**Universe**: People who experienced a non-trivial legal problem (severity less than 4) in the previous two years and whose problem resolution had concluded.
+<br>
+<br>
+<div style="font-size: 70%;">
+<table style="width:100%; border-collapse: collapse; border-bottom: 2px solid black;">
+    <tr>
+        <th style="width: 25%;">Indicator</th>
+        <th style="width: 32.5%;">Legal Needs Survey Question</th>
+        <th style="width: 20%;">Response Category</th>
+        <th style="width: 22.5%;text-align: center;">Coding <br>(1 = met need, <br>0 = unmet need)</th>
+    </tr>
+    <tr>
+        <td><b>Outcome of the Resolution Process</b></td>
+        <td>Is the problem ongoing or done with? By ‘done with’ I mean that the problem is either completely
+        resolved or that it persists, but that you and everybody else have given up all
+        actions to resolve it further.</td>
+        <td style="text-align: center;">Done with, problem fully resolved</td>
+        <td style="text-align: center;"><b>1</b></td>
+    </tr>
+    <tr>
+        <td></td>
+        <td></td>
+        <td style="text-align: center;">Done with, problem persists</td>
+        <td style="text-align: center;"><b>0</b></td>
+    </tr>
+    <tr>
+        <td style="border-bottom: 2px solid black;"><b></b></td>
+        <td style="border-bottom: 2px solid black;"></td>
+        <td style="border-bottom: 2px solid black; text-align: center;"> Ongoing /Too early to say/ Don't know </td>
+        <td style="text-align: center; border-bottom: 2px solid black;"><b> • Missing value </b></td>
+    </tr>
+</table>
+</div>
+
+## Code {.smaller}
+
+::: panel-tabset
+### Python
+``` r
+## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+##
+## Status of Legal Problem: Outcomes
+##
+## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+# Create a copy of the original dataset to work on, preventing accidental modifications to `master_data`
+
+A2J_df       = master_data.copy()
+
+# Step 1: Filter for people with a non-trivial legal problem
+
+# Filter only individuals who reported at least one legal problem (legprob == 1)
+# AND at least one severe legal problem (legprob_sev == 1)
+
+
+A2J_problems = A2J_df[(A2J_df["legprob"] == 1) & (A2J_df["legprob_sev"] == 1)]
+
+# Step 2: Recode AJR_fair
+
+A2J_problems["rp_outcome"] = A2J_problems.apply(
+    lambda row: 1 if (
+        # 1. If you incurred costs, but they were easy to pay --> not in gap
+        (row["AJR_state_noresol"] in ["Done with, problem fully resolved"] or 
+         row["AJR_state_resol"]   in ["Done with, problem fully resolved"])
+    ) else 0 if (
+        # 2. If you incurred costs that were difficult to pay --> in the justice gap
+        (row["AJR_state_noresol"] in ["Done with, but problem persists"] or 
+         row["AJR_state_resol"]   in ["Done with, but problem persists"])
+    ) else np.nan,  # Default: Assign NaN if no condition matches
+    axis=1
+)
+
+# Step 3: Apply the function of estimation
+rp_outcome = avg_estimation(A2J_problems, "rp_outcome")
+
+display(rp_outcome)
+
+```
+
+### R
+
+``` r
+## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+##
+### Status of Legal Problem: Outcomes                                                                            
+##
+## +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+# Step 1: Filter for individuals who reported at least one legal problem (`legprob == 1`) 
+# and at least one severe legal problem (`legprob_sev == 1`).
+rp_outcome <- A2J.df %>%
+  filter(legprob == 1, legprob_sev == 1) %>% 
+  
+  # Step 2: Create the `rp_outcome` variable based on problem resolution status
+  mutate(
+    rp_outcome = case_when(
+      # 1. Problem fully resolved
+      AJR_state_noresol == 4 | AJR_state_resol == 4 ~ 1,
+      
+      # 2. Problem persists (not fully resolved)
+      AJR_state_noresol == 3 | AJR_state_resol == 3 ~ 0,
+      
+      # 3. Problem ongoing or uncertain resolution
+      AJR_state_noresol %in% c(1, 2) | AJR_state_resol %in% c(1, 2) ~ NA_real_,
+      
+      # 4. Default case: Assign `NA_real_` if no condition matches
+      TRUE ~ NA_real_ 
+    )
+  )
+
+# Step 3: Apply the `avg_estimation` function to estimate the prevalence of `rp_outcome`
+# The function likely calculates a weighted average based on population proportions.
+
+rp_outcome <- avg_estimation(rp_outcome, "rp_outcome")
+  
+```
+### Stata
+
+``` r
+
+  
+```
+:::
+
+# The Justice Gap
+
+# Hardships and Cost Faced as a Cosequence of Legal Problems
